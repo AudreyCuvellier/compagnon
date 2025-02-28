@@ -61,8 +61,55 @@ textareas.forEach(textarea => {
     })
 })
 
-    document.getElementById("scrollTop").addEventListener("click", function() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+document.getElementById("scrollTop").addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
-   
+
+const notes = document.querySelectorAll(".note")
+notes.forEach(note => {
+    note.style.animationDuration = Math.floor(Math.random() * 6 + 3) + "s";
+})
+
+document.getElementById("playAudio").addEventListener("click", function() {
+    let audio = document.getElementById("audio");
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+        audio.currentTime = 0;
+    }
+});
+
+document.getElementById("playAudio-2").addEventListener("click", function() {
+    let audio = document.getElementById("audio-2");
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+        audio.currentTime = 0;
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    let video = document.getElementById("video");
+    video.muted = true; // Ne se lance pas automatiquement
+    video.play().catch(error => console.log("Autoplay bloqué :", error));
+}); 
+
+const text = `> Def Mystery_function
+> let secretcode
+> <Title> Compagnon </Title>`;
+        
+        const terminalElement = document.querySelector(".terminal");
+        let index = 0;
+
+        function typeEffect() {
+            if (index < text.length) {
+                terminalElement.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeEffect, 100); // Ajuste la vitesse ici (100ms)
+            }
+        }
+
+        setTimeout(typeEffect, 500);
