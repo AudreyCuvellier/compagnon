@@ -405,6 +405,8 @@ video {
     left: 25%;
 }
 
+
+
 @keyframes wave {
     0% {
         transform: translateX(0px) translateY(50px);
