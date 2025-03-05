@@ -239,7 +239,7 @@ video {
     position: absolute;
     cursor: pointer;
     top: 1180px;
-    left: 50px
+    left: 150px
 }
 
 .image-bouton-play-2 {
@@ -248,7 +248,7 @@ video {
     position: absolute;
     cursor: pointer;
     top: 1100px;
-    left: 50px
+    left: 150px
 }
 
 /*TOUCHES PIANO*/
@@ -530,19 +530,19 @@ video {
     position: absolute;
     font-family: Compagnon-Roman;
     left: 200px;
-    top: 2000px;
+    top: 1950px;
 }
 
 #terminal-container {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Compagnon-Medium;
     font-size: 20px;
     white-space: pre-line;
     color: #00FF00;
     background-color: black;
-    width: 220px;
+    width: 250px;
     left: 200px;
     position: absolute;
-    top: 2250px;
+    top: 2200px;
 }
 
 .cursor-terminal {
@@ -595,6 +595,49 @@ textarea {
 #textarea-medium {
     font-family: Compagnon-Medium;
 }
+
+.partie2 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 100px repeat(8, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    .div1-partie2 { grid-area: 1 / 1 / 2 / 8; }
+    .div2-partie2 { grid-area: 2 / 1 / 3 / 8; }
+    .div3-partie2 { grid-area: 3 / 1 / 4 / 4; 
+        margin-top: 300px ;
+        margin-left: 250px ;}
+    .div4-partie2 { grid-area: 3 / 4 / 4 / 8; 
+}
+    .div5-partie2 { grid-area: 4 / 1 / 5 / 8; }
+    .div6-partie2 { grid-area: 5 / 1 / 6 / 3; 
+        margin-top: 30px ;
+    }
+    .div7-partie2 { grid-area: 5 / 3 / 6 / 5; 
+    }
+    .div8-partie2 { grid-area: 5 / 5 / 6 / 7; 
+        margin-top: 30px ;
+    }
+    .div9-partie2 { grid-area: 6 / 1 / 7 / 7; }
+    .div10-partie2 { grid-area: 7 / 1 / 8 / 3;
+    }
+    .div11-partie2 { grid-area: 7 / 3 / 8 / 5; 
+        margin-top: 100px ;
+        margin-left: 120px 
+    }
+    .div12-partie2 { grid-area: 7 / 5 / 8 / 7; 
+        margin-left: 150px }
+    .div13-partie2 { grid-area: 8 / 1 / 9 / 7; }
+    .div14-partie2 { grid-area: 9 / 1 / 10 / 7; }
+
+    .img-fortissimo { 
+        width: 100%;
+    }
+.img-fortissimo-2 {
+    width: 80%;
+}
+
 
 /* FOOTER */
 
