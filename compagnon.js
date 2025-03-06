@@ -5,35 +5,32 @@ textareas.forEach(textarea => {
     let finalText = ""
     switch (textarea.id) {
         case "textarea-bold":
-            sound = new Audio('./audio/audio.mp3') // Ici pour inserer l'audio
+            sound = new Audio('./audio/crayon-papier.mp3') // Ici pour inserer l'audio
             finalText = "Au cours de la Renaissance, l’écriture évolue pour devenir plus lisible et élégante. Une écriture cursive et naturelle."
             break
 
         case "textarea-light":
-            sound = new Audio('./audio/audio.mp3') // Ici pour inserer l'audio
+            sound = new Audio('./audio/piano.mp3') // Ici pour inserer l'audio
             finalText = "Comme l'écriture, un instrument demande précision et discipline."
             break
 
         case "textarea-lightitalic":
-            sound = new Audio('./audio/audio.mp3') // Ici pour inserer l'audio
-            finalText = "Les doigts courent sur les touchent comme la plume sur le papier, traçant des notes au lieu des lettres"
+            sound = new Audio('./audio/piano.mp3') // Ici pour inserer l'audio
+            finalText = "Les doigts courent sur les touchent comme la plume sur le papier, traçant des notes au lieu des lettres."
             break
 
         case "textarea-roman":
-            sound = new Audio('./audio/audio.mp3') // Ici pour inserer l'audio
-            finalText = "Au XIXe siècle, une révolution approche. Les mots ne sont plus tracés à la main, mais frappés sur du papier par geste mécaniques."
+            sound = new Audio('./audio/machine-a-ecrire.mp3') // Ici pour inserer l'audio
+            finalText = "Au XIXe siècle, une révolution approche. Les mots ne sont plus tracés à la main, mais frappés sur du papier par geste mécaniques.La machine à écrire arrive. Il suffit d'appuyer pour voir une lettre apparaître sur le papier."
             break
         case "textarea-medium":
-            sound = new Audio('./audio/audio.mp3') // Ici pour inserer l'audio
-            finalText = "La machine à écrire arrive. Il suffit d'appuyer pour voir une lettre apparaître sur le papier."
+            sound = new Audio('./audio/clavier-ordi.mp3') // Ici pour inserer l'audio
+            finalText = "<p> Aujourd'hui, l'ordinateur révolutionne notre quotidien </p>."
             break
-        case "textarea-pc":
-            sound = new Audio('./audio/audio.mp3') // Ici pour inserer l'audio
-            finalText = "<p> Aujourd'hui, l'ordinateur révolutionne notre quotidient </p>."
-            break
-
         default:
             break;
+
+            
     }
 
     let count = 0
@@ -91,25 +88,89 @@ document.getElementById("playAudio-2").addEventListener("click", function() {
     }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    let video = document.getElementById("video");
-    video.muted = true; // Ne se lance pas automatiquement
-    video.play().catch(error => console.log("Autoplay bloqué :", error));
-}); 
+document.addEventListener("DOMContentLoaded", () => {
+    const textContainer = document.getElementById("text-container");
+    const textLines = document.getElementById("text").textContent
+        .trim()
+        .split("|")
+        .map(line => line.trim()); 
 
-const text = `> Def Mystery_function
-> let secretcode
-> <Title> Compagnon </Title>`;
-        
-        const terminalElement = document.querySelector(".terminal");
-        let index = 0;
+    let lineIndex = 0;
+    let charIndex = 0;
+    let currentLine = "";
+    let cursor = document.createElement("span");
+    cursor.classList.add("cursor");
 
-        function typeEffect() {
-            if (index < text.length) {
-                terminalElement.textContent += text.charAt(index);
-                index++;
-                setTimeout(typeEffect, 100); // Ajuste la vitesse ici (100ms)
+    function typeEffect() {
+        if (charIndex < textLines[lineIndex].length) {
+            currentLine += textLines[lineIndex][charIndex];
+            textContainer.innerHTML = textLines
+                .slice(0, lineIndex)
+                .map(line => `<div>${line}</div>`)
+                .join("") + `<div>${currentLine}<span class="cursor"></span></div>`;
+
+            charIndex++;
+            setTimeout(typeEffect, 100);
+        } else {
+            charIndex = 0;
+            lineIndex++;
+            currentLine = "";
+
+            if (lineIndex < textLines.length) {
+                setTimeout(typeEffect, 500); 
+            } else {
+                setTimeout(() => {
+                    textContainer.innerHTML = `<span class="cursor"></span>`;
+                    lineIndex = 0;
+                    typeEffect();
+                }, 1500);
             }
         }
+    }
 
-        setTimeout(typeEffect, 500);
+    setTimeout(typeEffect, 500);
+});
+
+//TERMINAL
+document.addEventListener("DOMContentLoaded", () => {
+    const textContainer = document.getElementById("terminal-container");
+    const textLines = document.getElementById("text-terminal").textContent
+        .trim()
+        .split("|")
+        .map(line => line.trim()); // Supprime les espaces inutiles
+
+    let lineIndex = 0;
+    let charIndex = 0;
+    let currentLine = "";
+    let cursor = document.createElement("span");
+    cursor.classList.add("cursor-terminal");
+
+    function typeEffect() {
+        if (charIndex < textLines[lineIndex].length) {
+            currentLine += textLines[lineIndex][charIndex];
+            textContainer.innerHTML = textLines
+                .slice(0, lineIndex)
+                .map(line => `<div>${line}</div>`)
+                .join("") + `<div>${currentLine}<span class="cursor-terminal"></span></div>`;
+
+            charIndex++;
+            setTimeout(typeEffect, 40);
+        } else {
+            charIndex = 0;
+            lineIndex++;
+            currentLine = "";
+
+            if (lineIndex < textLines.length) {
+                setTimeout(typeEffect, 500); // Pause avant la nouvelle ligne
+            } else {
+                setTimeout(() => {
+                    textContainer.innerHTML = `<span class="cursor-terminal"></span>`;
+                    lineIndex = 0;
+                    typeEffect();
+                }, 1500);
+            }
+        }
+    }
+
+    setTimeout(typeEffect, 500);
+});
